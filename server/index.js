@@ -13,19 +13,22 @@ db.once('open', function() {
   console.log(`connected to ${database}!`);
 });
 
-app.use('/', express.static(__dirname + '/../client/dist')); // verify this path when front end is up
+app.use('/', express.static(__dirname + '/../client/dist'));
 
 app.use(express.json());
 
-app.get('/actors', ((req, res) => {
-  console.log('inside GET');
-  dbIndex.find(actors => {
-    console.log(`GET response to '/'=${actors}`);
-    res.send(actors);
+app.get('/actors', (req, res) => {
+  console.log(JSON.stringify(req.query)); // = {"movieId":"1"}
+  let movieId = req.query;
+  dbIndex.getActors(movieId, (err, results) => {
+    if (err) {
+      console.log(`actors GET error=${err}`);
+    }
+    // console.log(`actors GET response[0]=${JSON.stringify(results[0])}`);
+    res.send(results);
   });
-}));
+});
 
 app.listen(port, () => {
   console.log(`listening on port ${port}!`);
 });
-
