@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-// const db = mongoose.connection;
 
-mongoose.connect('mongodb://localhost/fandangit');
+mongoose.connect('mongodb://localhost/fandangit', { useNewUrlParser: true });
 
 let actorSchema = mongoose.Schema({
   id: Number,
@@ -16,16 +15,16 @@ let actorSchema = mongoose.Schema({
 
 let Actor = mongoose.model('actor', actorSchema);
 
-let find = (callback => {
-  console.log('inside FIND');
-  Actor.find({ id: 1 }, ((err, found) => {
+let getActors = (movieId, callback) => {
+  Actor.find(movieId, ((err, results) => {
     if (err) {
-      console.log(`find error=${err}`);
+      console.log(`find actors error=${err}`);
       callback(err);
     } else {
-      console.log(`find func data=${found}`);
-      callback(found);
+      callback(null, results);
     }
   }));
-});
-module.exports = { find };
+};
+
+module.exports = { getActors };
+
