@@ -1,4 +1,12 @@
 import React from 'react';
+import styled from 'styled-components';
+
+// === STYLES === //
+
+const Wrapper = styled.section`
+  padding: 4em;
+  background: #eaeaea;
+`;
 
 class App extends React.Component {
   constructor(props) {
@@ -34,12 +42,18 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        {this.state.cast.map(actor => (
-          <div key={actor.id}>movie: {actor.title}, name: {actor.name}, role: {actor.role}, photo: {actor.photo} </div>
-        )
-        )}
-      </div>
+      <Wrapper>
+        <div>
+          {this.state.cast.map(actor => (
+            <div key={actor.id}>
+              <img src={actor.photo}></img>
+              <div className="actor-name">{actor.name}</div>
+              <div className="actor-role">{actor.role}</div>
+            </div>
+          )
+          )}
+        </div>
+      </Wrapper>
     );
   }
 }
