@@ -1,25 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
 
+// === STYLES === //
+
 const Wrapper = styled.div`
-  width: 100%;
+  width: 1280px;
   overflow: hidden;
 `;
 
 const CarouselContainer = styled.div`
   display: flex;
   margin: 0 0 20px 20 px;
+  align-content: center;
 `;
 
+// flex: 0 (flex-grow off) 1 (flex shrink on )
 const CarouselSlot = styled.div`
-  flex: 1 0 100%;
+  flex: 0 1 100%;
   flex-basis: 80%;
   margin-right: 20px;
+  order: ${(props) => props.order};
 `;
 
 const Title = styled.div`
   font-family: Alternate Gothic No1 D;
-
   font-size: 20px;
   color: #4c4c4c;
 `;
@@ -30,24 +34,43 @@ const Role = styled.div`
   color: #4c4c4c;
 `;
 
+// ===  COMPONENT DEFINITION ===  //
 
-const Carousel = (props) => {
-  return (
-    <div>
-      <Wrapper>
-        <CarouselContainer>
-          {props.castInfo.map(actor => (
-            <CarouselSlot key={actor.id}>
-              <img src={actor.photo}></img>
-              <Title>{actor.name}</Title>
-              <Role>{actor.role}</Role>
-            </CarouselSlot>
-          )
-          )}
-        </CarouselContainer>
-      </Wrapper>
-    </div>
-  );
-};
+class Carousel extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      position: 0
+    };
+  }
+
+  getOrder(itemIndex) {
+    const { position } = this.state;
+    const numItems = this.props.length || 1;
+    if (itemIndex - position < 0) {
+      return numItems - Math.abs(itemIndex - position);
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        <Wrapper>
+          <CarouselContainer>
+            {this.props.castInfo.map((actor, index) => (
+              <CarouselSlot key={actor.id} order={this.getOrder(index)}>
+                <img src={actor.photo} height={'189px'}></img>
+                <Title>{actor.name}</Title>
+                <Role>{actor.role}</Role>
+              </CarouselSlot>
+            )
+            )}
+          </CarouselContainer>
+        </Wrapper>
+      </div>
+    );
+  }
+}
+
 
 export default Carousel;
