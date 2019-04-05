@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Carousel from './carousel.jsx';
 
 // === STYLES === //
 
@@ -8,18 +9,7 @@ const Wrapper = styled.section`
   background: #eaeaea;
 `;
 
-const Title = styled.div`
-  font-family: Alternate Gothic No1 D;
-
-  font-size: 20px;
-  color: #4c4c4c;
-`;
-
-const Role = styled.div`
-  font-family: "Times New Roman";
-  font-style: italic;
-  color: #4c4c4c;
-`;
+// === DEFINE APP === //
 
 class App extends React.Component {
   constructor(props) {
@@ -56,16 +46,7 @@ class App extends React.Component {
   render() {
     return (
       <Wrapper>
-        <div>
-          {this.state.cast.map(actor => (
-            <div key={actor.id}>
-              <img src={actor.photo}></img>
-              <Title>{actor.name}</Title>
-              <Role>{actor.role}</Role>
-            </div>
-          )
-          )}
-        </div>
+        <Carousel castInfo={this.state.cast}/>
       </Wrapper>
     );
   }
