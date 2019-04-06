@@ -52,9 +52,20 @@ class Carousel extends React.Component {
     }
   }
 
+  // this still needs work //
+
+  nextSlide() {
+    const { position } = this.state;
+    const numItems = this.props.length || 1;
+    this.setState({
+      position: position === numItems - 1 ? 0 : position + 1
+    });
+  }
+
   render() {
     return (
       <div>
+        <Title>Cast + Crew</Title>
         <Wrapper>
           <CarouselContainer>
             {this.props.castInfo.map((actor, index) => (
@@ -67,6 +78,8 @@ class Carousel extends React.Component {
             )}
           </CarouselContainer>
         </Wrapper>
+        <Title>see full cast + crew for 2001: a space odyssey</Title>
+        <button onClick={this.nextSlide.bind(this)}>Next</button>
       </div>
     );
   }
