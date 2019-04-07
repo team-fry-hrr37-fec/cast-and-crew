@@ -5,7 +5,6 @@ import Carousel from './carousel.jsx';
 // === STYLES === //
 
 const Wrapper = styled.section`
-  padding: 4em;
   background: #eaeaea;
 `;
 

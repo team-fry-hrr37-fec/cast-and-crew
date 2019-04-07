@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import CarouselItem from './carouselItem.jsx';
+
 // === STYLES === //
 
 const Wrapper = styled.div`
@@ -14,25 +16,34 @@ const CarouselContainer = styled.div`
   align-content: center;
 `;
 
-// flex: 0 (flex-grow off) 1 (flex shrink on )
-const CarouselSlot = styled.div`
-  flex: 0 1 100%;
-  flex-basis: 80%;
-  margin-right: 20px;
-  order: ${(props) => props.order};
-`;
-
-const Title = styled.div`
+const Title = styled.h3`
+  display: inline-block;
   font-family: Alternate Gothic No1 D;
-  font-size: 20px;
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 35px;
   color: #4c4c4c;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+  margin: 0 0 15px;
+  padding: 0 30px;
+  border-bottom: 10px solid #4c4c4c;
 `;
 
-const Role = styled.div`
-  font-family: "Times New Roman";
-  font-style: italic;
-  color: #4c4c4c;
+const FullCast = styled.a`
+  float: right;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  color: #4AA7f6;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+  :hover {
+    cursor: pointer;
+  }
 `;
+
 
 // ===  COMPONENT DEFINITION ===  //
 
@@ -50,13 +61,21 @@ class Carousel extends React.Component {
     if (itemIndex - position < 0) {
       return numItems - Math.abs(itemIndex - position);
     }
+    return itemIndex - position;
   }
-
-  // this still needs work //
 
   nextSlide() {
     const { position } = this.state;
     const numItems = this.props.length || 1;
+    this.setState({
+      position: position === numItems - 1 ? 0 : position + 1
+    });
+  }
+
+  prevSlide() {
+    const { position } = this.state;
+    const { actorInfo } = this.props;
+    const numItems = actorInfo.length || 1;
     this.setState({
       position: position === numItems - 1 ? 0 : position + 1
     });
@@ -69,21 +88,18 @@ class Carousel extends React.Component {
         <Wrapper>
           <CarouselContainer>
             {this.props.castInfo.map((actor, index) => (
-              <CarouselSlot key={actor.id} order={this.getOrder(index)}>
-                <img src={actor.photo} height={'189px'}></img>
-                <Title>{actor.name}</Title>
-                <Role>{actor.role}</Role>
-              </CarouselSlot>
+              <CarouselItem key={actor.id} actor={actor} order={this.getOrder(index)}>
+
+              </CarouselItem>
             )
             )}
           </CarouselContainer>
+          <button onClick={()=> { this.nextSlide(); } }>Next</button>
+          <FullCast>see full cast + crew for 2001: a space odyssey</FullCast>
         </Wrapper>
-        <Title>see full cast + crew for 2001: a space odyssey</Title>
-        <button onClick={this.nextSlide.bind(this)}>Next</button>
       </div>
     );
   }
 }
-
 
 export default Carousel;
