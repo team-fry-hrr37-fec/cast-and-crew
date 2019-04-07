@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import CarouselItem from './carouselItem.jsx';
 
 // === STYLES === //
 
 const Wrapper = styled.div`
-  width: 1280px;
+  width: 800px;
   overflow: hidden;
 `;
 
@@ -43,7 +42,6 @@ const FullCast = styled.a`
     cursor: pointer;
   }
 `;
-
 
 // ===  COMPONENT DEFINITION ===  //
 
@@ -88,9 +86,7 @@ class Carousel extends React.Component {
         <Wrapper>
           <CarouselContainer>
             {this.props.castInfo.map((actor, index) => (
-              <CarouselItem key={actor.id} actor={actor} order={this.getOrder(index)}>
-
-              </CarouselItem>
+              <CarouselItem key={actor.id} actor={actor} order={this.getOrder(index)} />
             )
             )}
           </CarouselContainer>
