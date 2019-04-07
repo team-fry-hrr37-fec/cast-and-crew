@@ -5,8 +5,11 @@ import CarouselItem from './carouselItem.jsx';
 // === STYLES === //
 
 const Wrapper = styled.div`
-  width: 800px;
   overflow: hidden;
+  position: relative;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 800px;
 `;
 
 const CarouselContainer = styled.div`
@@ -31,6 +34,7 @@ const Title = styled.h3`
 `;
 
 const FullCast = styled.a`
+  margin-top: 10px;
   float: right;
   font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
@@ -82,16 +86,18 @@ class Carousel extends React.Component {
   render() {
     return (
       <div>
-        <Title>Cast + Crew</Title>
         <Wrapper>
+          <Title>Cast + Crew</Title>
           <CarouselContainer>
             {this.props.castInfo.map((actor, index) => (
               <CarouselItem key={actor.id} actor={actor} order={this.getOrder(index)} />
             )
             )}
           </CarouselContainer>
-          <button onClick={()=> { this.nextSlide(); } }>Next</button>
-          <FullCast>see full cast + crew for 2001: a space odyssey</FullCast>
+          <div>
+            <button onClick={()=> { this.nextSlide(); } }>Next</button>
+            <FullCast>see full cast + crew for 2001: a space odyssey</FullCast>
+          </div>
         </Wrapper>
       </div>
     );

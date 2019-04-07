@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import ActorInfo from './actorInfo.jsx';
 import ActorPhoto from './actorPhoto.jsx';
 
-// refactor into static component
+// refactor into static component? maybe hold the onclick method of the children
 
 // do I need this?
 const ItemWrapper = styled.div`
@@ -32,7 +32,7 @@ class CarouselItem extends React.Component {
   render() {
     return (
       <ItemWrapper>
-        <CarouselSlot>
+        <CarouselSlot >
           <ActorPhoto actor={this.props.actor}/>
           <ActorInfo actor={this.props.actor}/>
         </CarouselSlot>
