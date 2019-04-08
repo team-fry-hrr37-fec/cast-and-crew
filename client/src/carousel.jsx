@@ -89,7 +89,6 @@ class Carousel extends React.Component {
     if (itemIndex - position < 0) { //
       return numItems - Math.abs(itemIndex - position);
     }
-    console.log(`inside getOrder position=${position}`);
     return itemIndex - position;
   }
 
@@ -99,7 +98,6 @@ class Carousel extends React.Component {
     this.setState({
       position: position === numItems - 1 ? 0 : position + 1
     });
-    console.log(`inside nextSlide func`);
   }
 
   prevSlide() {
@@ -126,6 +124,7 @@ class Carousel extends React.Component {
           </CarouselContainer>
           <div>
             <button onClick={()=> { this.nextSlide(); } }>Next</button>
+            <button onClick={()=> { this.prevSlide(); } }>Prev</button>
             <FullCast onClick={() => { console.log('map out a list of the names and roles of the cast members'); }}>see full cast + crew for 2001: a space odyssey</FullCast>
           </div>
         </Wrapper>
