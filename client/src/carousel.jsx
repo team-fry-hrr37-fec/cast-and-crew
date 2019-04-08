@@ -9,10 +9,12 @@ const Wrapper = styled.div`
   position: relative;
   margin-right: auto;
   margin-left: auto;
-  max-width: 800px;
+  max-width: 850px;
 `;
 
 const CarouselContainer = styled.div`
+  height: 254px;
+  overflow: hidden;
   display: flex;
   margin: 0 0 20px 20 px;
   align-content: center;
@@ -33,6 +35,21 @@ const Title = styled.h3`
   border-bottom: 10px solid #4c4c4c;
 `;
 
+const Left = styled.button`
+  ::before: content {
+    img;
+  }
+  box-sizing: border-box;
+  border: 5px solid #ebebeb;
+  background-color: #fff;
+  position: absolute;
+  outline: 0;
+  width: 43px;
+  height: 100%;
+  top: 0;
+  bottom: 0
+`;
+
 const FullCast = styled.a`
   margin-top: 10px;
   float: right;
@@ -49,6 +66,7 @@ const FullCast = styled.a`
 
 // ===  COMPONENT DEFINITION ===  //
 
+
 class Carousel extends React.Component {
   constructor(props) {
     super(props);
@@ -59,25 +77,26 @@ class Carousel extends React.Component {
 
   getOrder(itemIndex) {
     const { position } = this.state;
-    const numItems = this.props.length || 1;
-    if (itemIndex - position < 0) {
+    const numItems = this.props.castInfo.length || 1;
+    if (itemIndex - position < 0) { //
       return numItems - Math.abs(itemIndex - position);
     }
+    console.log(`inside getOrder position=${position}`);
     return itemIndex - position;
   }
 
   nextSlide() {
     const { position } = this.state;
-    const numItems = this.props.length || 1;
+    const numItems = this.props.castInfo.length || 1;
     this.setState({
       position: position === numItems - 1 ? 0 : position + 1
     });
+    console.log(`inside nextSlide func`);
   }
 
   prevSlide() {
     const { position } = this.state;
-    const { actorInfo } = this.props;
-    const numItems = actorInfo.length || 1;
+    const numItems = this.props.castInfo.length || 1;
     this.setState({
       position: position === numItems - 1 ? 0 : position + 1
     });
@@ -89,6 +108,7 @@ class Carousel extends React.Component {
         <Wrapper>
           <Title>Cast + Crew</Title>
           <CarouselContainer>
+            {/* <Left /> */}
             {this.props.castInfo.map((actor, index) => (
               <CarouselItem key={actor.id} actor={actor} order={this.getOrder(index)} />
             )
@@ -96,7 +116,7 @@ class Carousel extends React.Component {
           </CarouselContainer>
           <div>
             <button onClick={()=> { this.nextSlide(); } }>Next</button>
-            <FullCast>see full cast + crew for 2001: a space odyssey</FullCast>
+            <FullCast onClick={() => { console.log('map out a list of the names and roles of the cast members'); }}>see full cast + crew for 2001: a space odyssey</FullCast>
           </div>
         </Wrapper>
       </div>

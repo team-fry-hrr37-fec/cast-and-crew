@@ -8,8 +8,7 @@ import ActorPhoto from './actorPhoto.jsx';
 
 // do I need this?
 const ItemWrapper = styled.div`
-  width: 126px;
-  padding-right: 8px;
+
   `;
 
 // flex: 0 (flex-grow off) 1 (flex shrink on )
@@ -18,9 +17,9 @@ const CarouselSlot = styled.div`
   background-color: #000;
   width: 126px;
   height: 254px;
-  flex: 0 1 100%;
+  flex: 1 0 100%;
   flex-basis: 20%;
-  margin-right: 20px;
+  margin-right: 8px;
   order: ${(props) => props.order};
 `;
 
@@ -32,7 +31,7 @@ class CarouselItem extends React.Component {
   render() {
     return (
       <ItemWrapper>
-        <CarouselSlot >
+        <CarouselSlot>
           <ActorPhoto actor={this.props.actor}/>
           <ActorInfo actor={this.props.actor}/>
         </CarouselSlot>

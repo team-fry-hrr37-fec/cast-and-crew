@@ -39,7 +39,7 @@ class ActorInfo extends React.Component {
 
   onClick() {
     // ADD ONCLICK METHOD THAT CREATES POP-UP WITH BIO AND FILMOGRAPHY
-
+    console.log('map out a list of the names and roles of the cast members');
   }
 
   render() {
