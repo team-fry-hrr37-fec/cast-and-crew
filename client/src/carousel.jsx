@@ -20,6 +20,15 @@ const CarouselContainer = styled.div`
   align-content: center;
 `;
 
+const ItemWrapper = styled.div`
+  flex: 0 1 100%;
+  flex-basis: 20%;
+  margin-right: 8px;
+  width: 126px;
+  order: ${(props) => props.order};
+  `;
+
+
 const Title = styled.h3`
   display: inline-block;
   font-family: Alternate Gothic No1 D;
@@ -66,7 +75,6 @@ const FullCast = styled.a`
 
 // ===  COMPONENT DEFINITION ===  //
 
-
 class Carousel extends React.Component {
   constructor(props) {
     super(props);
@@ -110,7 +118,9 @@ class Carousel extends React.Component {
           <CarouselContainer>
             {/* <Left /> */}
             {this.props.castInfo.map((actor, index) => (
-              <CarouselItem key={actor.id} actor={actor} order={this.getOrder(index)} />
+              <ItemWrapper key={actor.id} order={this.getOrder(index)}>
+                <CarouselItem actor={actor} />
+              </ItemWrapper>
             )
             )}
           </CarouselContainer>
