@@ -4,10 +4,7 @@ import styled from 'styled-components';
 import ActorInfo from './actorInfo.jsx';
 import ActorPhoto from './actorPhoto.jsx';
 
-// refactor into static component? maybe hold the onclick method of the children
 
-
-// flex: 0 (flex-grow off) 1 (flex shrink on )
 const CarouselItemSlot = styled.div`
   overflow: hidden;
   background-color: #000;
