@@ -9,16 +9,62 @@ const Wrapper = styled.div`
   position: relative;
   margin-right: auto;
   margin-left: auto;
-  max-width: 850px;
+  max-width: 950px;
+  padding: 40px;
+`;
+
+const CarouselWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 254px;
+`;
+
+const LeftButton = styled.button`
+  border: none;
+  background-color: #fff;
+  position: relative;
+  width: 43px;
+  height: 254px;
+  margin-right: 8px;
+  ::before {
+    color: #4c4c4c;
+    content: '◀'
+  }
+`;
+
+const RightButton = styled.button`
+  border: none;
+  background-color: #fff;
+  position: relative;
+  outline: 0;
+  width: 43px;
+  height: 254px;
+  margin-left: 8px;
+  ::before {
+    color: #4c4c4c;
+    content: '▶'
+  }
 `;
 
 const CarouselContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   height: 254px;
   overflow: hidden;
-  display: flex;
   margin: 0 0 20px 20 px;
   align-content: center;
 `;
+
+const ItemWrapper = styled.div`
+  flex: 0 1 100%;
+  flex-basis: 20%;
+  margin-right: 8px;
+  width: 126px;
+  order: ${(props) => props.order};
+`;
+
 
 const Title = styled.h3`
   display: inline-block;
@@ -35,20 +81,7 @@ const Title = styled.h3`
   border-bottom: 10px solid #4c4c4c;
 `;
 
-const Left = styled.button`
-  ::before: content {
-    img;
-  }
-  box-sizing: border-box;
-  border: 5px solid #ebebeb;
-  background-color: #fff;
-  position: absolute;
-  outline: 0;
-  width: 43px;
-  height: 100%;
-  top: 0;
-  bottom: 0
-`;
+
 
 const FullCast = styled.a`
   margin-top: 10px;
@@ -57,15 +90,14 @@ const FullCast = styled.a`
   text-transform: uppercase;
   color: #4AA7f6;
   cursor: pointer;
-  font-weight: 700;
-  font-size: 14px;
   :hover {
     cursor: pointer;
   }
+  font-weight: 700;
+  font-size: 14px;
 `;
 
 // ===  COMPONENT DEFINITION ===  //
-
 
 class Carousel extends React.Component {
   constructor(props) {
@@ -81,7 +113,6 @@ class Carousel extends React.Component {
     if (itemIndex - position < 0) { //
       return numItems - Math.abs(itemIndex - position);
     }
-    console.log(`inside getOrder position=${position}`);
     return itemIndex - position;
   }
 
@@ -91,14 +122,13 @@ class Carousel extends React.Component {
     this.setState({
       position: position === numItems - 1 ? 0 : position + 1
     });
-    console.log(`inside nextSlide func`);
   }
 
   prevSlide() {
     const { position } = this.state;
     const numItems = this.props.castInfo.length || 1;
     this.setState({
-      position: position === numItems - 1 ? 0 : position + 1
+      position: position === 0 ? numItems - 1 : position - 1
     });
   }
 
@@ -107,16 +137,20 @@ class Carousel extends React.Component {
       <div>
         <Wrapper>
           <Title>Cast + Crew</Title>
-          <CarouselContainer>
-            {/* <Left /> */}
-            {this.props.castInfo.map((actor, index) => (
-              <CarouselItem key={actor.id} actor={actor} order={this.getOrder(index)} />
-            )
-            )}
-          </CarouselContainer>
+          <CarouselWrapper>
+            <LeftButton onClick={()=> { this.prevSlide(); } } />
+            <CarouselContainer>
+              {this.props.castInfo.map((actor, index) => (
+                <ItemWrapper key={actor.id} order={this.getOrder(index)}>
+                  <CarouselItem actor={actor} />
+                </ItemWrapper>
+              )
+              )}
+            </CarouselContainer>
+            <RightButton onClick={()=> { this.nextSlide(); } } />
+          </CarouselWrapper>
           <div>
-            <button onClick={()=> { this.nextSlide(); } }>Next</button>
-            <FullCast onClick={() => { console.log('map out a list of the names and roles of the cast members'); }}>see full cast + crew for 2001: a space odyssey</FullCast>
+            <FullCast onClick={() => { console.log('map out a list of cast and crew in popover'); }}>see full cast + crew for 2001: a space odyssey</FullCast>
           </div>
         </Wrapper>
       </div>

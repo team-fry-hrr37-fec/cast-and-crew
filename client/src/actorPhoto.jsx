@@ -30,15 +30,16 @@ class ActorPhoto extends React.Component {
 
   }
 
-  onClick() {
+  onClick(bio, filmography) {
     // ADD ONCLICK METHOD THAT CREATES POP-UP WITH BIO AND FILMOGRAPHY
-    console.log('map out a list of the names and roles of the cast members');
+    // filmography is an array of objects {title: string (needs to be uppercase), cast: [string, string, etc.]}
+    console.log(`Bio:\n${bio}\n\nFilmography:\n${JSON.stringify(filmography)}`);
   }
 
   render() {
     return (
       <PhotoWrapper>
-        <ActorPhotoStyles src={this.props.actor.photo} onClick={this.onClick}/>
+        <ActorPhotoStyles src={this.props.actor.photo} onClick={() => this.onClick(this.props.actor.bio, this.props.actor.filmography) }/>
       </PhotoWrapper>
     );
   }
