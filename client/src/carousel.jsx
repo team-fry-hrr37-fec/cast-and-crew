@@ -27,6 +27,10 @@ const LeftButton = styled.button`
   width: 43px;
   height: 254px;
   margin-right: 8px;
+  ::before {
+    color: #4c4c4c;
+    content: '◀'
+  }
 `;
 
 const RightButton = styled.button`
@@ -37,6 +41,10 @@ const RightButton = styled.button`
   width: 43px;
   height: 254px;
   margin-left: 8px;
+  ::before {
+    color: #4c4c4c;
+    content: '▶'
+  }
 `;
 
 const CarouselContainer = styled.div`
