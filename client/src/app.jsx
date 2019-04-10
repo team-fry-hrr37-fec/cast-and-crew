@@ -4,7 +4,7 @@ import Carousel from './carousel.jsx';
 
 // === STYLES === //
 
-const Wrapper = styled.section`
+const Wrapper = window.styled.section`
   background: #eaeaea;
 `;
 
@@ -15,6 +15,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       movieId: 1,
+      title: '2001: A SPACE ODYSSEY',
       cast: []
     };
   }
@@ -22,7 +23,7 @@ class App extends React.Component {
   // === GET CAST MEMBERS BASED ON MOVIE ID === //
 
   getCast(movieId) {
-    fetch(`/actors?movieId=${movieId}`)
+    fetch(`http://localhost:2002/actors?movieId=${movieId}`)
       .then(res => res.json())
       .then(castInfo =>
         this.setState({
@@ -45,7 +46,7 @@ class App extends React.Component {
   render() {
     return (
       <Wrapper>
-        <Carousel castInfo={this.state.cast}/>
+        <Carousel castInfo={this.state.cast} title={this.state.title}/>
       </Wrapper>
     );
   }

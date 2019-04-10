@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 
-const InfoContainer = styled.div`
+const InfoContainer = window.styled.div`
   width: 126px;
   height: 50px;
   padding: 8px;
@@ -9,7 +9,7 @@ const InfoContainer = styled.div`
   overflow: hidden;
 `;
 
-const Name = styled.div`
+const Name = window.styled.div`
   font-family: Alternate Gothic No1 D;
   font-size: 20px;
   color: #4c4c4c;
@@ -19,7 +19,7 @@ const Name = styled.div`
   }
 `;
 
-const Role = styled.div`
+const Role = window.styled.div`
   color: #929292;
   display: block;
   font-family: "Times New Roman",serif;

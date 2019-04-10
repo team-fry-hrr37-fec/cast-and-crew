@@ -1,11 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 
 import ActorInfo from './actorInfo.jsx';
 import ActorPhoto from './actorPhoto.jsx';
 
 
-const CarouselItemSlot = styled.div`
+const CarouselItemSlot = window.styled.div`
   overflow: hidden;
   background-color: #000;
   width: 126px;
