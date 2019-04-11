@@ -22,7 +22,22 @@ class App extends React.Component {
     };
   }
 
+  // === ATTEMPTING TO GET MOVIE BY ID OR NAME FROM URL === //
 
+  // setLookUp() {
+  //   const pathname = window.location.pathname;
+  //   const lookup = pathname.slice(1);
+  //   console.log(lookup);
+  //   if (isNaN(lookup)) {
+  //     this.setState({
+  //       title: lookup
+  //     });
+  //   } else {
+  //     this.setState({
+  //       movieId: Number(lookup)
+  //     });
+  //   }
+  // }
 
   // === GET CAST MEMBERS BASED ON MOVIE ID === //
 
@@ -42,8 +57,9 @@ class App extends React.Component {
   // === GET CAST MEMBERS BASED ON COMPONENT MOUNT === //
 
   componentDidMount() {
-    this.identifyMovieQuery();
+    // this.setLookUp();
     this.getCast(this.state.movieId);
+    // console.log(this.state);
   }
 
   // === RENDER LIST OF CAST MEMBERS (for testing purposes) === //
