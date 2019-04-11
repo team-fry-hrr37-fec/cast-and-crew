@@ -1,11 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import Carousel from './carousel.jsx';
+
+
 
 // === STYLES === //
 
 const Wrapper = window.styled.section`
-  background: #eaeaea;
+background: #eaeaea;
 `;
 
 // === DEFINE APP === //
@@ -19,6 +21,8 @@ class App extends React.Component {
       cast: []
     };
   }
+
+
 
   // === GET CAST MEMBERS BASED ON MOVIE ID === //
 
@@ -38,6 +42,7 @@ class App extends React.Component {
   // === GET CAST MEMBERS BASED ON COMPONENT MOUNT === //
 
   componentDidMount() {
+    this.identifyMovieQuery();
     this.getCast(this.state.movieId);
   }
 
