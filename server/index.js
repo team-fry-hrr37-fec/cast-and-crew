@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require ('cors');
 const app = express();
 const mongoose = require('mongoose');
 const dbIndex = require('../database/index.js');
@@ -13,12 +14,13 @@ db.once('open', function() {
   console.log(`connected to ${database}!`);
 });
 
-app.use('/', express.static(__dirname + '/../client/dist'));
+app.use('/', express.static(__dirname + '/../client'));
 
+app.use(cors());
 app.use(express.json());
 
 app.get('/actors', (req, res) => {
-  console.log(JSON.stringify(req.query)); // = {"movieId":"1"}
+  // console.log(JSON.stringify(req.query)); // = {"movieId":"1"}
   let movieId = req.query;
   dbIndex.getActors(movieId, (err, results) => {
     if (err) {
