@@ -26,7 +26,6 @@ app.get('/actors', (req, res) => {
     if (err) {
       console.log(`actors GET error=${err}`);
     }
-    // console.log(`actors GET response[0]=${JSON.stringify(results[0])}`);
     res.send(results);
   });
 });
