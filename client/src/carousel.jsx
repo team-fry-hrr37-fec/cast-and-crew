@@ -1,6 +1,8 @@
 import React from 'react';
 // import styled from 'styled-components';
 import CarouselItem from './carouselItem.jsx';
+import Popup from 'reactjs-popup';
+
 
 // === STYLES === //
 
@@ -81,8 +83,6 @@ const Title = window.styled.h3`
   border-bottom: 10px solid #4c4c4c;
 `;
 
-
-
 const FullCast = window.styled.a`
   margin-top: 10px;
   float: right;
@@ -97,14 +97,56 @@ const FullCast = window.styled.a`
   font-size: 14px;
 `;
 
+const Modal = window.styled.div`
+  font-size: 20px;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  color: #4c4c4c;
+  padding: 20px;
+  .header {
+    width: 100%;
+    border-bottom: 1px solid gray;
+    font-size: 24px;
+    text-align: center;
+    padding: 5px;
+  }
+  .content {
+    width: 100%;
+    padding: 20px 20px;
+  }
+  .modal > .actions {
+    width: 100%;
+    padding: 10px 5px;
+    margin: auto;
+    text-align: center;
+  }
+  .close {
+    cursor: pointer;
+    position: absolute;
+    display: block;
+    padding: 2px 5px;
+    line-height: 20px;
+    right: -10px;
+    top: -10px;
+    font-size: 24px;
+    background: #ffffff;
+    border-radius: 18px;
+    border: 1px solid #cfcece;
+}
+`;
+
 // ===  COMPONENT DEFINITION ===  //
 
 class Carousel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      position: 0
+      position: 0,
+      open: false
     };
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   getOrder(itemIndex) {
@@ -132,8 +174,15 @@ class Carousel extends React.Component {
     });
   }
 
+  openModal () {
+    this.setState({ open: true });
+  }
+  closeModal () {
+    this.setState({ open: false });
+  }
+
   render() {
-    const movieTitle = JSON.stringify(this.props.castInfo[0]);
+    // console.log(this.props.castInfo[0]);
     return (
       <div>
         <Wrapper>
@@ -151,7 +200,14 @@ class Carousel extends React.Component {
             <RightButton onClick={()=> { this.nextSlide(); } } />
           </CarouselWrapper>
           <div>
-            <FullCast onClick={() => { console.log('map out a list of cast and crew in popover'); }}>see full cast + crew for {this.props.title}</FullCast>
+            <FullCast onClick={this.openModal}>see full cast + crew for {this.props.title}</FullCast>
+            <Popup open={this.state.open} closeOnDocumentClick onClose={this.closeModal}>
+              <Modal className="modal">
+                <a className="close" onClick={this.closeModal}>&times;</a>
+                <div className="header" >CAST:</div>
+                <div className="content" ></div> {this.props.castInfo.map((actor, id) => (<div key={actor.id}>{actor.role} - {actor.name}</div>))}
+              </Modal>
+            </Popup>
           </div>
         </Wrapper>
       </div>
