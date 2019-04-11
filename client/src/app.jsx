@@ -1,11 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import Carousel from './carousel.jsx';
+
+
 
 // === STYLES === //
 
-const Wrapper = styled.section`
-  background: #eaeaea;
+const Wrapper = window.styled.section`
+background: #eaeaea;
 `;
 
 // === DEFINE APP === //
@@ -15,14 +17,17 @@ class App extends React.Component {
     super(props);
     this.state = {
       movieId: 1,
+      title: '2001: A SPACE ODYSSEY',
       cast: []
     };
   }
 
+
+
   // === GET CAST MEMBERS BASED ON MOVIE ID === //
 
   getCast(movieId) {
-    fetch(`/actors?movieId=${movieId}`)
+    fetch(`http://localhost:2002/actors?movieId=${movieId}`)
       .then(res => res.json())
       .then(castInfo =>
         this.setState({
@@ -37,6 +42,7 @@ class App extends React.Component {
   // === GET CAST MEMBERS BASED ON COMPONENT MOUNT === //
 
   componentDidMount() {
+    this.identifyMovieQuery();
     this.getCast(this.state.movieId);
   }
 
@@ -45,7 +51,7 @@ class App extends React.Component {
   render() {
     return (
       <Wrapper>
-        <Carousel castInfo={this.state.cast}/>
+        <Carousel castInfo={this.state.cast} title={this.state.title}/>
       </Wrapper>
     );
   }

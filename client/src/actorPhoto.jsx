@@ -1,8 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 
 
-const PhotoWrapper = styled.div`
+const PhotoWrapper = window.styled.div`
   position: relative;
   display: block;
   height: 189px;
@@ -10,7 +10,7 @@ const PhotoWrapper = styled.div`
   overflow: hidden;
 `;
 
-const ActorPhotoStyles = styled.img`
+const ActorPhotoStyles = window.styled.img`
   position: relative;
   display: block;
   height: 189px;
