@@ -97,7 +97,7 @@ const FullCast = window.styled.a`
   font-size: 14px;
 `;
 
-const Modal = window.styled.div`
+const FullCastModal = window.styled.div`
   font-size: 20px;
   font-weight: 700;
   font-family: 'Montserrat', sans-serif;
@@ -114,12 +114,6 @@ const Modal = window.styled.div`
   .content {
     width: 100%;
     padding: 20px 20px;
-  }
-  .modal > .actions {
-    width: 100%;
-    padding: 10px 5px;
-    margin: auto;
-    text-align: center;
   }
   .close {
     cursor: pointer;
@@ -182,7 +176,6 @@ class Carousel extends React.Component {
   }
 
   render() {
-    // console.log(this.props.castInfo[0]);
     return (
       <div>
         <Wrapper>
@@ -202,11 +195,14 @@ class Carousel extends React.Component {
           <div>
             <FullCast onClick={this.openModal}>see full cast + crew for {this.props.title}</FullCast>
             <Popup open={this.state.open} closeOnDocumentClick onClose={this.closeModal}>
-              <Modal className="modal">
+              <FullCastModal className="modal">
                 <a className="close" onClick={this.closeModal}>&times;</a>
                 <div className="header" >CAST:</div>
-                <div className="content" ></div> {this.props.castInfo.map((actor, id) => (<div key={actor.id}>{actor.role} - {actor.name}</div>))}
-              </Modal>
+                <div className="content" >
+                  {this.props.castInfo.map((actor) => (<div key={actor.id}>{actor.role} - {actor.name}</div>))}
+                </div>
+
+              </FullCastModal>
             </Popup>
           </div>
         </Wrapper>
