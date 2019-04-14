@@ -1,7 +1,5 @@
 import React from 'react';
-// import styled from 'styled-components';
 import Popup from 'reactjs-popup';
-
 
 const PhotoWrapper = window.styled.div`
   position: relative;
@@ -36,7 +34,8 @@ padding: 20px;
   width: 100%;
   border-bottom: 1px solid gray;
   font-size: 24px;
-  text-align: center;
+  text-align
+  : center;
   padding: 5px;
 }
 .content {
