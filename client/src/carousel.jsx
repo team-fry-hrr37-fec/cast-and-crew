@@ -1,8 +1,6 @@
 import React from 'react';
-// import styled from 'styled-components';
 import CarouselItem from './carouselItem.jsx';
 import Popup from 'reactjs-popup';
-
 
 // === STYLES === //
 
