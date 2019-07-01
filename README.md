@@ -3,7 +3,7 @@ FEC cast and crew service
 
 # Project Name
 
-> Project description
+> Movieoke or Fandangit
 
 ## Related Projects
 
@@ -26,8 +26,7 @@ FEC cast and crew service
 
 An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
-- Node 6.13.0
-- etc
+- Node 10.15.3
 
 ## Development
 
