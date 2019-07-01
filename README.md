@@ -7,20 +7,12 @@ FEC cast and crew service
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/team-fry-hrr37-fec/main-video-info
+  - https://github.com/team-fry-hrr37-fec/video-player-and-carousel
 
-## Table of Contents
+## Setup
 
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
-
-## Usage
-
-> Some usage instructions
+- MongoDB should be installed and running on your machine
 
 ## Requirements
 
@@ -28,14 +20,5 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
 - Node 10.15.3
 
-## Development
 
-### Installing Dependencies
-
-From within the root directory:
-
-```sh
-npm install -g webpack
-npm install
-```
 
